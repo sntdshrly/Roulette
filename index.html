@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Roulette</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="author" content="sherly santiadi 2072025">
+</head>
+<style>
+input{margin: 10px}
+	.group-box{
+		display: flex
+	}
+	.group-box div{
+		width:100px;
+		height: 200px;
+		border: 1px solid black;
+		margin: 10px;
+		
+	}
+	.group-box div p{
+		margin: 50%;
+		font-size:50px
+	}
+	button{
+		margin: 10px;
+		width: 350px
+	}
+
+</style>
+<body>
+
+
+<input type="number" id="number">
+<span>max number 0-9</span>
+
+
+<div class="group-box">
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<div id="div3"></div>
+</div>
+<button onclick="spin()">Spin</button>
+
+<script>
+	function spin(){
+		num = document.getElementById('number').value
+		div1 = document.getElementById('div1')
+		div2 = document.getElementById('div2')
+		div3 = document.getElementById('div3')
+		
+		if(!num){
+			alert("empty!")
+		}else{
+
+
+		div1.innerHTML="<p>"+doRandom(num)+"</p>"
+		div2.innerHTML="<p>"+doRandom(num)+"</p>"
+		div3.innerHTML="<p>"+doRandom(num)+"</p>"		
+
+		arr=[]
+		arr.push(div1.innerText)
+		arr.push(div2.innerText)
+		arr.push(div3.innerText)
+
+		if(arr.every(x=>x==arr[0])){
+			alert("you win!")
+			console.log(div1.innerText , div2.innerText , div3.innerText)
+		}
+
+	}
+		
+	}
+
+	function doRandom(max,min=0){
+		if(max>9){
+			max=9
+		}
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	}
+</script>
+</body>
+</html>
